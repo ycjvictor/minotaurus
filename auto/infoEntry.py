@@ -24,20 +24,28 @@ class InfoEntry(object):
         project_name.send_keys((str(project_id[0]).encode('utf-8') + "测试项目").decode('utf-8'))
         project_cast = browser.find_element_by_xpath('//*[@id="projectInfoBaseDTO.projectCast"]/div[2]/input')
         project_cast.send_keys(str(round(random.uniform(10000000, 50000000), 2)))
-        # project_type = browser.find_element_by_xpath('//*[@id="projectInfoBaseDTO.projectTypeId"]/div/div/div')
+
+        # 获取项目类型下拉框
         project_type = browser.find_element_by_xpath('/html/body/div/div/div[2]/div/div[2]/div[2]/div/div[2]/div/div['
                                                      '1]/form/div[1]/div[2]/div/div[1]/div[3]/div/div['
                                                      '2]/div/span/div/div/div/div')
+        # 呼出下拉列表
         project_type.click()
+
+        # 测试使用: 验证是否找到目标列表
         project_type_options = browser.find_element_by_xpath("/html/body/div[2]")
+        inner_html = project_type_options.get_attribute('innerHTML')
+        print inner_html
+        # 获取下拉列表可选项目数量
+        ul_li_list = project_type_options.find_elements_by_xpath('/html/body/div[2]/div/div/div/ul/li')
+        ul_li_sum = len(ul_li_list)
+        print "下拉列表可选数量：ul_li_sum:" + str(ul_li_sum)
 
-        innerHTML = project_type_options.get_attribute('innerHTML')
-        print project_type_options
-        # print type(innerHTML)
-        print len(innerHTML)
+        # 选中某一个选项
+        if ul_li_sum > 0:
+            li_list = project_type_options.find_elements_by_xpath('/html/body/div[2]/div/div/div/ul/li[' + str(random.randint(0, ul_li_sum - 1)) + '3]')
+            li_list[0].click()
 
-        li_list = project_type_options.find_elements_by_xpath('/ul/li[3]')
-        print li_list
 
         # project_address = browser.find_element_by_xpath('')
         # project_address_detail = browser.find_element_by_xpath('')
