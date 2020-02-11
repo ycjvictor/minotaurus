@@ -24,10 +24,20 @@ class InfoEntry(object):
         project_name.send_keys((str(project_id[0]).encode('utf-8') + "测试项目").decode('utf-8'))
         project_cast = browser.find_element_by_xpath('//*[@id="projectInfoBaseDTO.projectCast"]/div[2]/input')
         project_cast.send_keys(str(round(random.uniform(10000000, 50000000), 2)))
-        project_type = browser.find_element_by_xpath('//*[@id="projectInfoBaseDTO.projectTypeId"]/div/div/div')
+        # project_type = browser.find_element_by_xpath('//*[@id="projectInfoBaseDTO.projectTypeId"]/div/div/div')
+        project_type = browser.find_element_by_xpath('/html/body/div/div/div[2]/div/div[2]/div[2]/div/div[2]/div/div['
+                                                     '1]/form/div[1]/div[2]/div/div[1]/div[3]/div/div['
+                                                     '2]/div/span/div/div/div/div')
         project_type.click()
-        project_type_option = browser.find_element_by_xpath('//*[@id="88d28dfd-a69c-445f-d90f-f79a4c454b5c"]/ul/li[1]')
-        project_type_option.click()
+        project_type_options = browser.find_element_by_xpath("/html/body/div[2]")
+
+        innerHTML = project_type_options.get_attribute('innerHTML')
+        print project_type_options
+        # print type(innerHTML)
+        print len(innerHTML)
+
+        li_list = project_type_options.find_elements_by_xpath('/ul/li[3]')
+        print li_list
 
         # project_address = browser.find_element_by_xpath('')
         # project_address_detail = browser.find_element_by_xpath('')
