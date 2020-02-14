@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import time
 from selenium.webdriver.common.action_chains import ActionChains
 
 
@@ -12,6 +13,7 @@ class ProjectSidebar(object):
         if subitem == u'信息录入':
             info_collection = browser.find_element_by_xpath('//*[@id="app"]/div/div[2]/div/div[2]/div[1]/ul/li[1]/div[2]')
             ActionChains(browser).move_to_element(info_collection).perform()
+            time.sleep(1)
             info_entry = browser.find_element_by_xpath(
                 '//*[@id="app"]/div/div[2]/div/div[2]/div[1]/div/div/div/div/div[2]/div/div/ul/li[2]')
             info_entry.click()

@@ -11,8 +11,15 @@ from projectSidebar import ProjectSidebar
 class AutoTester(object):
 
     def auto_tester(self, url, browser, acctountId, passwordId, submit, acctount, password):
+        #登录
         Login().login_without_qr(url, browser, acctountId, passwordId, submit, acctount, password)
-        browser.get("http://47.96.183.143/#/pm/manage/project-list")
+
+        #切换到项目管理模块
+        # browser.get("http://47.96.183.143/#/pm/manage/project-list")
+        project_oa_box = browser.find_element_by_xpath('//*[@id="app"]/div/div[1]/div[2]/div')
+        project_oa_box.click()
+        project_option = browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div[5]/div/div/div/ul/li[2]')
+        project_option.click()
         time.sleep(1)
 
         # # 新建立项
@@ -30,6 +37,7 @@ class AutoTester(object):
         time.sleep(1)
         ProjectSidebar().prject_sidebar(browser, u'信息录入')
         InfoEntry().info_entry(browser)
+        # browser.quit()
 
 if __name__ == "__main__":
     url = "http://47.96.183.143/#/login"
@@ -39,6 +47,5 @@ if __name__ == "__main__":
     acctount = "admin"
     password = "111111"
     submit = "ant-btn-lg"
-
     auto_tester = AutoTester()
     auto_tester.auto_tester(url, browser, acctountId, passwordId, submit, acctount, password)
