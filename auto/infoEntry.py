@@ -43,17 +43,14 @@ class InfoEntry(object):
         time.sleep(1)
         # js去掉readonly属性
         expected_process_time.click()
-        remove_readonly_js = '$(".ant-input").attr("readonly",false)'
-        browser.execute_script(remove_readonly_js)
+        # remove_readonly_js = '$(".ant-calendar-input").attr("readonly",false)'
+        # browser.execute_script(remove_readonly_js)
         # 在你还没有执行 send_key 时，已经有时间了
-        now_time = datetime.datetime.now()
-        now_date = datetime.datetime.strftime(now_time, '%Y-%m-%d')
-        expected_process_time.send_keys(now_date)
-
-
-
-
-
+        # now_time = datetime.datetime.now()
+        # now_date = datetime.datetime.strftime(now_time, '%Y-%m-%d')
+        # expected_process_time.send_keys(now_date)
+        today = browser.find_element_by_class_name("ant-calendar-today-btn ")
+        browser.execute_script("arguments[0].click();", today)
 
         # # 项目类型
         # project_type_location = '//*[@id="projectInfoBaseDTO.projectTypeId"]/div/div'
