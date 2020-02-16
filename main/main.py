@@ -1,1 +1,1 @@
-# coding=utf-8import randomif __name__ == '__main__':    print("Do Something")
+# coding=utf-8import timefrom selenium import webdriverif __name__ == "__main__":    driver = webdriver.Chrome()    driver.get("https://www.baidu.com/")    time.sleep(2)    js = "window.open('https://www.baidu.com/')"    driver.execute_script(js)
