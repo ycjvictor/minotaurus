@@ -39,18 +39,19 @@ class AutoTester(object):
         InfoEntry().info_entry(browser)
         # browser.quit()
 
+
 if __name__ == "__main__":
     options = webdriver.ChromeOptions()
     options.debugger_address = "127.0.0.1:9222"
     browser = webdriver.Chrome(options=options)
 
     url = "http://47.96.183.143/#/login"
-    acctountId = "account"
+    accountId = "account"
     passwordId = "password"
-    acctount = "admin"
+    account = "admin"
     password = "111111"
     submit = "ant-btn-lg"
     auto_tester = AutoTester()
-    auto_tester.auto_tester(url, browser, acctountId, passwordId, submit, acctount, password)
+    auto_tester.auto_tester(url, browser, accountId, passwordId, submit, account, password)
 
 
