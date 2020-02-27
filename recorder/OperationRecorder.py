@@ -1,0 +1,1 @@
+# coding=utf-8class OperationRecorder(object):    """    此类用于录制用户操作，    生成对应的xml录制文件，    xml文件将作为重复动作的测试图纸    """    def vcr_init(self):        print "1.初始化连接器"        print "2.初始化连接池"        print "3.初始化录像机"        print "4.初始化数据库"    def recorder(self):        print "1.记录操作"        print "2.生成xml"

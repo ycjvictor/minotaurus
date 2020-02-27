@@ -1,1 +1,1 @@
-# coding=utf-8class BaseModel(object):    """    Public Param    TODO: 这里可以作为你通用参数的基类，其他参数可以由此派生，不过这都是后话了，要等到你把：封装/继承/多态 整明白    """
+# coding=utf-8class BaseModel(object):    """    基础数据模型，其他数据可以由此派生。    """    def generator(self):        print "测试数据生成器"
