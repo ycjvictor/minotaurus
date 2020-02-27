@@ -1,1 +1,1 @@
-# config=utf-8class ModelEngine(object):    """    模型处理引擎    """    def parser(self):        print "解析数据生成规则"    def mocker(self):        print "产生模拟数据"
+# coding=utf-8class ModelEngine(object):    """    模型处理引擎    """    def parser(self):        print "解析数据生成规则"    def mocker(self):        print "产生模拟数据"
