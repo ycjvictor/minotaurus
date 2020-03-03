@@ -3,16 +3,18 @@
 from selenium import webdriver
 import time
 from login import Login
+from projectBuild import ProjectBuild
 from infoEntry import InfoEntry
-from projectListQuery import ProjectListQuery
+from listQuery import ListQuery
 from projectSidebar import ProjectSidebar
+from approvals.approvalProcess import ApprovalProcess
 
 
 class AutoTester(object):
 
-    def auto_tester(self, url, browser, acctountId, passwordId, submit, acctount, password):
+    def auto_tester(self, browser, account, password, project_source):
         #登录
-        Login().login_without_qr(url, browser, acctountId, passwordId, submit, acctount, password)
+        Login().login_without_qr(browser, account, password)
 
         #切换到项目管理模块
         # browser.get("http://47.96.183.143/#/pm/manage/project-list")
@@ -22,36 +24,46 @@ class AutoTester(object):
         project_option.click()
         time.sleep(1)
 
-        # # 新建立项
-        # browser.find_element_by_xpath('//*[@id="app"]/div/div[2]/div/div[2]/div[2]/div/div[1]/div[2]/button').click()
-        # # 规则权限下一步
-        # time.sleep(1)
-        # browser.find_element_by_xpath('//*[@id="app"]/div/div[2]/div/div[2]/div[2]/div/div[3]/div/button').click()
-        # # 项目来源
+        # 新建立项
+        ProjectBuild().project_build(browser, project_source)
+        # 其他来源
+        if project_source == 1:
+            # 信息录入
+            InfoEntry().info_entry(browser)
+
+        # 招标文件来源
+        elif project_source == 2:
+            # TODO：公告解读
+            pass
+
+        # # 项目列表查询项目进入详情
+        # ListQuery().project_list_query(browser, u'61测试')
+        # time.sleep(2)
+        # ProjectSidebar().prject_sidebar(browser, u'信息录入')
         # time.sleep(1)
         # browser.find_element_by_xpath('//*[@id="sourceType"]/label[2]').click()  # 其他来源
         # # browser.find_element_by_xpath('//*[@id="sourceType"]/label[1]').click()  # 招标文件来源
         # browser.find_element_by_xpath('/html/body/div[3]/div/div[2]/div/div[2]/div[3]/div/button[2]')
 
-        ProjectListQuery().project_list_query(browser, u'47测试')
-        time.sleep(1)
-        ProjectSidebar().prject_sidebar(browser, u'信息录入')
+        # 信息录入并发起审批
         InfoEntry().info_entry(browser)
-        # browser.quit()
+
+        # TODO: 审批
+        ApprovalProcess().info_entry_approval()
+
+
 
 
 if __name__ == "__main__":
-    options = webdriver.ChromeOptions()
-    options.debugger_address = "127.0.0.1:9222"
-    browser = webdriver.Chrome(options=options)
+    # options = webdriver.ChromeOptions()
+    # options.debugger_address = "127.0.0.1:9222"
+    # browser = webdriver.Chrome(options=options)
+    browser = webdriver.Chrome()
 
-    url = "http://47.96.183.143/#/login"
-    accountId = "account"
-    passwordId = "password"
-    account = "admin"
-    password = "111111"
-    submit = "ant-btn-lg"
+    account = "akuang"
+    password = "123456"
+    browser.delete_all_cookies()
     auto_tester = AutoTester()
-    auto_tester.auto_tester(url, browser, accountId, passwordId, submit, account, password)
+    auto_tester.auto_tester(browser, account, password, 1)
 
 
