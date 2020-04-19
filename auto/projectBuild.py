@@ -10,7 +10,8 @@ class ProjectBuild(object):
         time.sleep(1)
 
         # 规则权限下一步
-        browser.find_element_by_xpath('//*[@id="app"]/div/div[2]/div/div[2]/div[2]/div/div[3]/div/button').click()
+        next_button = browser.find_element_by_xpath('//*[@id="app"]/div/div[2]/div/div[2]/div[2]/div/div[3]/div/button')
+        browser.execute_script('arguments[0].click()', next_button)
         time.sleep(1)
 
         # 项目来源选择
@@ -30,4 +31,4 @@ class ProjectBuild(object):
             time.sleep(2)
 
         else:
-            print '项目来源错误'
+            print('项目来源错误')

@@ -7,7 +7,7 @@ from projectBuild import ProjectBuild
 from infoEntry import InfoEntry
 from listQuery import ListQuery
 from projectSidebar import ProjectSidebar
-from approvals.approvalProcess import ApprovalProcess
+from approval.approvalProcess import ApprovalProcess
 
 
 class AutoTester(object):
@@ -15,13 +15,14 @@ class AutoTester(object):
     def auto_tester(self, browser, account, password, project_source):
         #登录
         Login().login_without_qr(browser, account, password)
+        time.sleep(1)
 
         #切换到项目管理模块
         # browser.get("http://47.96.183.143/#/pm/manage/project-list")
         project_oa_box = browser.find_element_by_xpath('//*[@id="app"]/div/div[1]/div[2]/div')
         project_oa_box.click()
-        project_option = browser.find_element_by_xpath('/html/body/div[1]/div/div[1]/div[5]/div/div/div/ul/li[2]')
-        project_option.click()
+        project_option = browser.find_element_by_xpath('/html/body/div/div/div[1]/div[4]/div/div/div/ul/li[2]')
+        browser.execute_script('arguments[0].click()', project_option)
         time.sleep(1)
 
         # 新建立项
@@ -60,7 +61,7 @@ if __name__ == "__main__":
     # browser = webdriver.Chrome(options=options)
     browser = webdriver.Chrome()
 
-    account = "akuang"
+    account = "ces001"
     password = "123456"
     browser.delete_all_cookies()
     auto_tester = AutoTester()
