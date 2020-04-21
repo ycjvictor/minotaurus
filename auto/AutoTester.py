@@ -61,7 +61,7 @@ if __name__ == "__main__":
     # browser = webdriver.Chrome(options=options)
     browser = webdriver.Chrome()
 
-    account = "ces001"
+    account = "ces005"
     password = "123456"
     browser.delete_all_cookies()
     auto_tester = AutoTester()
