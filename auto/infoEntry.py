@@ -8,16 +8,17 @@ import datetime
 from util.SelectorUtils import SelectorUtils
 from selenium.webdriver.common.keys import Keys
 
+project_id = 0
+
 
 class InfoEntry(object):
 
     def __init__(self):
         pass
 
-    project_id = 0
-
     def project_common_info(self, browser):
         current_url = browser.current_url
+        global project_id
         project_id = re.findall(r"projectId=(.+?)&", current_url)[0]
         project_instance_code = re.findall(r"projectCode=(.+?)&", current_url)
         print('项目：' + str(project_instance_code[0]))
@@ -150,10 +151,11 @@ class InfoEntry(object):
         # reserve_fund_use.send_keys(str(project_id) + "备用金用途")
 
     def entry_exclusive_info(self, browser):
+        global project_id
         # 项目具体来源
         project_source = browser.find_element_by_xpath('//*[@id="projectInfoBaseDTO.projectSourceDetail"]')
         project_source.clear()
-        project_source.send_keys(str(self.project_id) + "项目具体来源")
+        project_source.send_keys(str(project_id) + "项目具体来源")
 
         # 预计进入程序时间
         expected_process_time = browser.find_element_by_xpath(
@@ -167,164 +169,165 @@ class InfoEntry(object):
         # 竞争对手
         competitor = browser.find_element_by_xpath('//*[@id="projectInfoBaseDTO.competitor"]')
         competitor.clear()
-        competitor.send_keys(str(self.project_id) + "竞争对手")
+        competitor.send_keys(str(project_id) + "竞争对手")
 
         # 技术难度
         technical_difficulty = browser.find_element_by_xpath('//*[@id="projectInfoBaseDTO.technicalDifficulty"]')
         technical_difficulty.clear()
-        technical_difficulty.send_keys(str(self.project_id) + "技术难度")
+        technical_difficulty.send_keys(str(project_id) + "技术难度")
 
         # 施工条件
         construction_condition = browser.find_element_by_xpath('//*[@id="projectInfoBaseDTO.constructionConditions"]')
         construction_condition.clear()
-        construction_condition.send_keys(str(self.project_id) + "施工条件")
+        construction_condition.send_keys(str(project_id) + "施工条件")
 
     def self_evaluation_info(self, browser):
+        global project_id
         # 自我评测-投入周期计划-标前阶段投入
         tender_stage_input_before = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.tenderStageInputBefore"]')
         tender_stage_input_before.clear()
-        tender_stage_input_before.send_keys(str(self.project_id) + "标前阶段投入")
+        tender_stage_input_before.send_keys(str(project_id) + "标前阶段投入")
 
         # 自我评测-投入周期计划-投标阶段投入
         tender_stage_input = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.tenderStageInput"]')
         tender_stage_input.clear()
-        tender_stage_input.send_keys(str(self.project_id) + "投标阶段投入")
+        tender_stage_input.send_keys(str(project_id) + "投标阶段投入")
 
         # 自我评测-投入周期计划-建设阶段投入
         construction_stage_input = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.constructionStageInput"]')
         construction_stage_input.clear()
-        construction_stage_input.send_keys(str(self.project_id) + "建设阶段投入")
+        construction_stage_input.send_keys(str(project_id) + "建设阶段投入")
 
         # 自我评测-收入周期计划-标前阶段收入
         tender_stage_income_before = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.tenderStageIncomeBefore"]')
         tender_stage_income_before.clear()
-        tender_stage_income_before.send_keys(str(self.project_id) + "标前阶段收入")
+        tender_stage_income_before.send_keys(str(project_id) + "标前阶段收入")
 
         # 自我评测-收入周期计划-投标阶段收入
         tender_stage_income = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.tenderStageIncome"]')
         tender_stage_income.clear()
-        tender_stage_income.send_keys(str(self.project_id) + "投标阶段收入")
+        tender_stage_income.send_keys(str(project_id) + "投标阶段收入")
 
         # 自我评测-收入周期计划-建设阶段收入
         construction_stage_income = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.constructionStageIncome"]')
         construction_stage_income.clear()
-        construction_stage_income.send_keys(str(self.project_id) + "建设阶段收入")
+        construction_stage_income.send_keys(str(project_id) + "建设阶段收入")
 
         # 自我评测-拟投入资源-时间
         expected_input_source_time = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.expectedInputSourceTime"]')
         expected_input_source_time.clear()
-        expected_input_source_time.send_keys(str(self.project_id) + "拟投入资源-时间")
+        expected_input_source_time.send_keys(str(project_id) + "拟投入资源-时间")
 
         # 自我评测-拟投入资源-人力
         expected_input_source_manpower = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.expectedInputSourceManpower"]')
         expected_input_source_manpower.clear()
-        expected_input_source_manpower.send_keys(str(self.project_id) + "拟投入资源-人力")
+        expected_input_source_manpower.send_keys(str(project_id) + "拟投入资源-人力")
 
         # 自我评测-拟投入资源-证书
         expected_input_source_cert = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.expectedInputSourceCert"]')
         expected_input_source_cert.clear()
-        expected_input_source_cert.send_keys(str(self.project_id) + "拟投入资源-证书")
+        expected_input_source_cert.send_keys(str(project_id) + "拟投入资源-证书")
 
         # 自我评测-拟投入资源-业绩
         expected_input_source_performance = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.expectedInputSourcePerformance"]')
         expected_input_source_performance.clear()
-        expected_input_source_performance.send_keys(str(self.project_id) + "拟投入资源-业绩")
+        expected_input_source_performance.send_keys(str(project_id) + "拟投入资源-业绩")
 
         # 自我评测-拟投入资源-荣誉
         expected_input_source_honor = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.expectedInputSourceHonor"]')
         expected_input_source_honor.clear()
-        expected_input_source_honor.send_keys(str(self.project_id) + "拟投入资源-荣誉")
+        expected_input_source_honor.send_keys(str(project_id) + "拟投入资源-荣誉")
 
         # 自我评测-拟投入资源-资金
         expected_input_source_fund = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.expectedInputSourceFund"]')
         expected_input_source_fund.clear()
-        expected_input_source_fund.send_keys(str(self.project_id) + "拟投入资源-资金")
+        expected_input_source_fund.send_keys(str(project_id) + "拟投入资源-资金")
 
         # 自我评测-风险点-现场环境
         risk_site_enviroment = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.riskSiteEnv"]')
         risk_site_enviroment.clear()
-        risk_site_enviroment.send_keys(str(self.project_id) + "风险点-现场环境")
+        risk_site_enviroment.send_keys(str(project_id) + "风险点-现场环境")
 
         # 自我评测-风险点-社会环境
         risk_social_enviroment = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.riskSocietyEnv"]')
         risk_social_enviroment.clear()
-        risk_social_enviroment.send_keys(str(self.project_id) + "风险点-社会环境")
+        risk_social_enviroment.send_keys(str(project_id) + "风险点-社会环境")
 
         # 自我评测-风险点-技术风险
         risk_technology = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.riskTechnology"]')
         risk_technology.clear()
-        risk_technology.send_keys(str(self.project_id) + "风险点-技术风险")
+        risk_technology.send_keys(str(project_id) + "风险点-技术风险")
 
         # 自我评测-风险点-质量风险
         risk_quality = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.riskQuality"]')
         risk_quality.clear()
-        risk_quality.send_keys(str(self.project_id) + "风险点-质量风险")
+        risk_quality.send_keys(str(project_id) + "风险点-质量风险")
 
         # 自我评测-风险点-安全风险
         risk_safety = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.riskSafety"]')
         risk_safety.clear()
-        risk_safety.send_keys(str(self.project_id) + "风险点-安全风险")
+        risk_safety.send_keys(str(project_id) + "风险点-安全风险")
 
         # 自我评测-风险点-资金风险
         risk_fund = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.riskFund"]')
         risk_fund.clear()
-        risk_fund.send_keys(str(self.project_id) + "风险点-资金风险")
+        risk_fund.send_keys(str(project_id) + "风险点-资金风险")
 
         # 自我评测-风险点-政策风险
         risk_policy = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.riskPolicy"]')
         risk_policy.clear()
-        risk_policy.send_keys(str(self.project_id) + "风险点-政策风险")
+        risk_policy.send_keys(str(project_id) + "风险点-政策风险")
 
         # 自我评测-风险点-政治风险
         risk_political = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.riskPolitical"]')
         risk_political.clear()
-        risk_political.send_keys(str(self.project_id) + "风险点-政治风险")
+        risk_political.send_keys(str(project_id) + "风险点-政治风险")
 
         # 自我评测-风险点-合作方风险
         risk_partner = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.riskPartner"]')
         risk_partner.clear()
-        risk_partner.send_keys(str(self.project_id) + "风险点-合作方风险")
+        risk_partner.send_keys(str(project_id) + "风险点-合作方风险")
 
         # 自我评测-收益-品牌
         income_brand = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.incomeBrand"]')
         income_brand.clear()
-        income_brand.send_keys(str(self.project_id) + "收益-品牌")
+        income_brand.send_keys(str(project_id) + "收益-品牌")
 
         # 自我评测-收益-队伍
         income_team = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.incomeTeam"]')
         income_team.clear()
-        income_team.send_keys(str(self.project_id) + "收益-队伍")
+        income_team.send_keys(str(project_id) + "收益-队伍")
 
         # 自我评测-收益-荣誉
         income_honor = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.incomeHonor"]')
         income_honor.clear()
-        income_honor.send_keys(str(self.project_id) + "收益-荣誉")
+        income_honor.send_keys(str(project_id) + "收益-荣誉")
 
         # 自我评测-收益-业绩
         income_performance = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.incomePerformance"]')
         income_performance.clear()
-        income_performance.send_keys(str(self.project_id) + "收益-业绩")
+        income_performance.send_keys(str(project_id) + "收益-业绩")
 
         # 自我评测-收益-利润
         income_profit = browser.find_element_by_xpath('//*[@id="projectInfoSelfevaluationDTO.incomeProfit"]')
         income_profit.clear()
-        income_profit.send_keys(str(self.project_id) + "收益-利润")
+        income_profit.send_keys(str(project_id) + "收益-利润")
 
         # 自我评测-综合评估
         comprehensive_eveluation = browser.find_element_by_xpath \
             ('//*[@id="projectInfoSelfevaluationDTO.comprehensiveEvaluation"]')
         comprehensive_eveluation.clear()
-        comprehensive_eveluation.send_keys(str(self.project_id) + "综合评估")
+        comprehensive_eveluation.send_keys(str(project_id) + "综合评估")
 
     def button(self, browser):
         # 保存草稿
@@ -345,6 +348,7 @@ class InfoEntry(object):
         # browser.execute_script('arguments[0].click()', initiate_approval_confirm_button)
 
     def info_entry(self, browser):
+        global project_id
         self.project_common_info(browser)
         self.entry_exclusive_info(browser)
         self.self_evaluation_info(browser)
@@ -685,8 +689,8 @@ class InfoEntry(object):
     #     browser.execute_script('arguments[0].click()', initiate_approval_confirm_button)
 
     def get_proiect_id(self):
-        print('项目ID：' + str(self.project_id))
-        return self.project_id
+        print('项目ID：' + str(project_id))
+        return project_id
 
     def get_project_name(self):
         print('项目名称' + project_name_value)
