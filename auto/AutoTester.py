@@ -2,11 +2,11 @@
 
 from selenium import webdriver
 import time
-from login import Login
-from projectBuild import ProjectBuild
-from infoEntry import InfoEntry
-from listQuery import ListQuery
-from projectSidebar import ProjectSidebar
+from auto.login import Login
+from auto.projectBuild import ProjectBuild
+from auto.infoEntry import InfoEntry
+from auto.listQuery import ListQuery
+from auto.projectSidebar import ProjectSidebar
 from approval.approvalProcess import ApprovalProcess
 
 

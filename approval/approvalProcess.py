@@ -2,7 +2,7 @@
 
 import time
 from selenium import webdriver
-from approval import approval
+from approval.approval import Approval
 from auto.login import Login
 from auto.listQuery import ListQuery
 from auto.infoEntry import InfoEntry
@@ -61,3 +61,4 @@ class ApprovalProcess(object):
 
 if __name__ == "__main":
     ApprovalProcess().info_entry_approval()
+

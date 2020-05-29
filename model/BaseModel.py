@@ -1,1 +1,1 @@
-# coding=utf-8class BaseModel(object):    """    基础数据模型，其他数据可以由此派生。    """    def generator(self):        print "测试数据生成器"
+# coding=utf-8class BaseModel(object):    """    基础数据模型，其他数据可以由此派生。    """    def generator(self):        print("测试数据生成器")
