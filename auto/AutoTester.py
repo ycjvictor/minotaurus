@@ -5,6 +5,7 @@ import time
 from auto.login import Login
 from auto.projectBuild import ProjectBuild
 from auto.infoEntry import InfoEntry
+from auto.infoAnalyse import InfoAnalyse
 from auto.listQuery import ListQuery
 from auto.projectSidebar import ProjectSidebar
 from approval.approvalProcess import ApprovalProcess
@@ -21,7 +22,7 @@ class AutoTester(object):
         # browser.get("http://47.96.183.143/#/pm/manage/project-list")
         project_oa_box = browser.find_element_by_xpath('//*[@id="app"]/div/div[1]/div[2]/div')
         project_oa_box.click()
-        project_option = browser.find_element_by_xpath('/html/body/div/div/div[1]/div[4]/div/div/div/ul/li[2]')
+        project_option = browser.find_element_by_xpath('//*[@id="app"]//div[@class="ant-select-dropdown-content"]/ul/li[2]')
         browser.execute_script('arguments[0].click()', project_option)
         time.sleep(1)
 
@@ -34,8 +35,8 @@ class AutoTester(object):
 
         # 招标文件来源
         elif project_source == 2:
-            # TODO：公告解读
-            pass
+            # 公告解读
+            InfoAnalyse().info_analyse(browser)
 
         # # 项目列表查询项目进入详情
         # ListQuery().project_list_query(browser, u'61测试')
@@ -61,10 +62,11 @@ if __name__ == "__main__":
     # browser = webdriver.Chrome(options=options)
     browser = webdriver.Chrome()
 
-    account = "ces005"
+    account = "yinchengjie"
     password = "123456"
     browser.delete_all_cookies()
     auto_tester = AutoTester()
-    auto_tester.auto_tester(browser, account, password, 1)
+    auto_tester.auto_tester(browser, account, password, 2)
+
 
 

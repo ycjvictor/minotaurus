@@ -19,16 +19,16 @@ class ApprovalProcess(object):
         project_address = project_info.get_project_address()
         project_process = '信息评审'
 
-        account_dic = {'ces008': '123456', 'ces015': '123456'}
-        account_li = ['ces008', 'ces015', 'ces005', 'liuyang']
+        account_dic = {'15068935517': '123456', '13705706177': '123456'}
+        account_li = ['15068935517', '13705706177', '18367048100']
 
         if u'浙江省衢州市' in project_address:
-            account_dic['jiangjiangao'] = '123456'
-            account_li.insert(1, 'jiangjinagao')
+            account_dic['13388506788'] = '123456'
+            account_li.insert(0, '13388506788')
         if project_cast > 50000000:
             account_dic['ces005'] = '123456'
             if project_cast > 1000000000:
-                account_dic['liuyang'] = '123456'
+                account_dic['18367048100'] = '123456'
         print(account_dic)
 
 
